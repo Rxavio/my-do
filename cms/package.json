@@ -1,0 +1,24 @@
+{
+  "name": "xavio",
+  "version": "1.0.0",
+  "description": "practice",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "handlebars": "^4.1.2",
+    "mongodb": "^3.2.6",
+    "mongoose": "^5.5.12",
+    "nodemon": "^1.19.1",
+    "validator": "^11.1.0"
+  }
+}
