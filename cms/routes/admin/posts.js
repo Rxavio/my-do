@@ -7,14 +7,20 @@ router.all('/*',(req,res,next)=>{
     next();
     });
 
-router.get('/create',(req,res)=>{
-
-    res.render('admin/posts/create'); 
-            
+    router.get('/',(req,res)=>{
+       Post.find({}).then(posts=>{
+        res.render('admin/posts',{posts: posts}); 
+       });
+      
         });
 
-    router.post('/create',(req,res)=>{
+ router.get('/create',(req,res)=>{
 
+ res.render('admin/posts/create'); 
+        
+     });
+     router.post('/create',(req,res)=>{
+  
         let allowComments = true;
     
         if(req.body.allowComments){
@@ -26,34 +32,26 @@ router.get('/create',(req,res)=>{
             allowComments = false;
     
         }
-
+    
+    
         const newPost = new Post({
             title: req.body.title,
             status: req.body.status,
             allowComments: allowComments,
             body: req.body.body,
                 });
-
     newPost.save().then(savePost=>{
-        console.log(savePost);
-            res.redirect('/admin/posts/index');
-        }).catch(error=>{
-            console.log('could not save post');
-        });
-  
+    //    console.log(savePost);
+        res.redirect('/admin/posts');
+    }).catch(error=>{
+        console.log('could not save post');
+    });
 
+   //console.log(req.body)
 
-//    console.log(req.body)
-
-  });  
-
-
-
-router.get('/index',(req,res)=>{
-
-res.render('admin/posts/'); 
-});
-
+  });
+ 
+   
     
 
         module.exports=router;
