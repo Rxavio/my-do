@@ -15,9 +15,11 @@ app.set('view engine', 'handlebars');
 
 //load routes
 const home= require('./routes/home/index');
+const admin=require('./routes/admin/index');
 
 //use routes
 app.use('/', home);
+app.use('/admin', admin);
 
 
 app.listen(4500,()=>{
