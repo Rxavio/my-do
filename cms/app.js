@@ -12,21 +12,13 @@ app.use(express.static(path.join(__dirname,'public')));
 app.engine('handlebars', exphbs({defaultLayout:'home'}));
 app.set('view engine', 'handlebars');
 
-app.get('/', (req,res)=>{
-    res.render('home/index');
-});
 
-app.get('/about', (req,res)=>{
-    res.render('home/about');
-});
+//load routes
+const home= require('./routes/home/index');
 
-app.get('/login', (req,res)=>{
-    res.render('home/login');
-});
+//use routes
+app.use('/', home);
 
-app.get('/register', (req,res)=>{
-    res.render('home/register');
-});
 
 app.listen(4500,()=>{
     console.log('listening on port 4500');
