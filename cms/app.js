@@ -3,6 +3,7 @@ const exphbs  = require('express-handlebars');
 const mongoose=require('mongoose');
 const app=express();
 const path=require('path');
+const bodyParser=require('body-parser')
 
 
 //database connection
@@ -19,6 +20,12 @@ app.use(express.static(path.join(__dirname,'public')));
 //set view engine
 app.engine('handlebars', exphbs({defaultLayout:'home'}));
 app.set('view engine', 'handlebars');
+
+
+//body parser
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+
 
 
 //load routes
