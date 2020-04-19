@@ -50,8 +50,43 @@ router.all('/*',(req,res,next)=>{
    //console.log(req.body)
 
   });
- 
-   
-    
 
-        module.exports=router;
+  router.get('/edit/:id', (req, res)=>{
+
+    Post.findOne({_id: req.params.id})
+        .then(post=>{    
+
+     res.render('admin/posts/edit', {post: post});
+   
+   
+    });
+});
+
+// POST UPDATING
+
+router.put('/edit/:id', (req, res)=>{
+
+    Post.findOne({_id: req.params.id})
+
+        .then(post=>{
+            if(req.body.allowComments){
+                allowComments = true;
+            } else{
+                allowComments = false;
+            }
+
+            post.title = req.body.title;
+            post.status = req.body.status;
+            post.allowComments = allowComments;
+            post.body = req.body.body;
+
+            post.save().then(updatedPost=>{
+                res.redirect('/admin/posts');
+            });
+
+        });
+
+});
+
+
+ module.exports=router;
