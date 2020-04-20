@@ -9,6 +9,7 @@ router.all('/*',(req,res,next)=>{
 
     router.get('/',(req,res)=>{
        Post.find({}).then(posts=>{
+        // console.log(posts);
         res.render('admin/posts',{posts: posts}); 
        });
       

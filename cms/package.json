@@ -1,5 +1,5 @@
 {
-  "name": "xavio",
+  "name": "edwin",
   "version": "1.0.0",
   "description": "practice",
   "main": "app.js",
@@ -9,20 +9,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "ejs": "^2.6.1",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
     "express-handlebars": "^3.1.0",
+    "faker": "^4.1.0",
+    "handlebars": "^4.1.2",
+    "method-override": "^3.0.0",
     "mongodb": "^3.2.6",
     "mongoose": "^5.5.12",
     "nodemon": "^1.19.1",
-    "mongoose-url-slugs": "^1.0.2",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "express-session": "^1.15.6",
-    "faker": "^4.1.0",
-    "express-fileupload": "^0.3.0",
-    "connect-flash": "^0.1.1",
-    "method-override": "^2.3.10"
+    "validator": "^11.1.0"
   }
 }
