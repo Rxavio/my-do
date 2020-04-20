@@ -2,6 +2,7 @@ const express=require('express');
 const router=express.Router();
 const Post=require('../../models/Post');
 const { isEmpty, uploadDir } = require('../../helpers/upload-helper');
+const fs = require('fs');
 
 router.all('/*',(req,res,next)=>{
     req.app.locals.layout='admin';
@@ -104,11 +105,13 @@ router.put('/edit/:id', (req, res)=>{
 
 
 router.delete('/:id', (req, res)=>{
-    Post.deleteOne({_id: req.params.id})
-        .then(result =>{
+    Post.findOne({_id: req.params.id})
+        .then(post =>{
+        fs.unlink(uploadDir + post.file, (err)=>{
+            post.remove();
          res.redirect('/admin/posts');
           });
        });
-
+    });
 
  module.exports=router;
