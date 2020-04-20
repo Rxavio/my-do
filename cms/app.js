@@ -26,6 +26,10 @@ app.set('view engine', 'handlebars');
 // Method Override
 app.use(methodOverride('_method'));
 
+// Upload Middleware
+app.use(upload());
+
+
 //body parser
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
