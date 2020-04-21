@@ -97,8 +97,26 @@ router.put('/edit/:id', (req, res)=>{
             post.allowComments = allowComments;
             post.body = req.body.body;
 
-            post.save().then(updatedPost=>{
-                res.redirect('/admin/posts');
+
+            if(!isEmpty(req.files)){
+
+                let file = req.files.file;
+                filename = Date.now() + '-' + file.name;
+                post.file = filename;
+
+                file.mv('./public/uploads/' + filename, (err)=>{
+
+                    if(err) throw err;
+
+                });
+
+            }
+
+         post.save().then(updatedPost=>{
+
+          req.flash('success_message', 'Post was successfully updated');
+
+         res.redirect('/admin/posts');
             });
 
         });
@@ -110,9 +128,14 @@ router.delete('/:id', (req, res)=>{
     Post.findOne({_id: req.params.id})
         .then(post =>{
         fs.unlink(uploadDir + post.file, (err)=>{
-            post.remove();
-         res.redirect('/admin/posts');
+
+        post.remove().then(postRemoved=>{
+            
+            req.flash('success_message', 'Post was successfully deleted');
+         
+            res.redirect('/admin/posts');
           });
+        });
        });
     });
 
