@@ -62,6 +62,16 @@ router.put('/edit/:id', (req, res)=>{
 });
 
 
+router.delete('/:id', (req, res)=>{
+
+    Category.deleteOne({_id: req.params.id}).then(result=>{
+ 
+        res.redirect('/admin/categories');
+ 
+    });
+  
+ });
+
 
 
 
