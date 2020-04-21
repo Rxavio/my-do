@@ -35,6 +35,33 @@ router.post('/create', (req, res)=>{
 
 });
 
+router.get('/edit/:id', (req, res)=>{
+
+    Category.findOne({_id: req.params.id}).then(category=>{
+
+        res.render('admin/categories/edit', {category: category});
+
+    });
+
+});
+
+router.put('/edit/:id', (req, res)=>{
+
+    Category.findOne({_id: req.params.id}).then(category=>{
+
+        category.name = req.body.name;
+
+        category.save().then(savedCategory=>{
+
+            res.redirect('/admin/categories');
+
+        });
+
+    });
+
+});
+
+
 
 
 
