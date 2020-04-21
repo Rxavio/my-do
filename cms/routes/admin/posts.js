@@ -57,14 +57,14 @@ const newPost = new Post({
     file: filename
         });
 newPost.save().then(savePost=>{
-
+//  console.log(newPost);
 req.flash('success_message', 'Post was successfully updated');
 
 res.redirect('/admin/posts');
 }).catch(error=>{
 console.log('could not save post');
 }); 
- //console.log(req.body)
+
  });
 
 
@@ -130,7 +130,7 @@ router.delete('/:id', (req, res)=>{
         fs.unlink(uploadDir + post.file, (err)=>{
 
         post.remove().then(postRemoved=>{
-            
+
             req.flash('success_message', 'Post was successfully deleted');
          
             res.redirect('/admin/posts');

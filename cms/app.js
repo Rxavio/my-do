@@ -17,11 +17,11 @@ const flash = require('connect-flash');
 
 app.use(express.static(path.join(__dirname,'public')));
 
-const {select} = require('./helpers/handlebars-helpers');
-
 
 //set view engine
-app.engine('handlebars', exphbs({defaultLayout:'home', helpers: {select: select}}));
+
+const {select, generateDate} = require('./helpers/handlebars-helpers');
+app.engine('handlebars', exphbs({defaultLayout: 'home', helpers: {select: select, generateDate: generateDate}}));
 app.set('view engine', 'handlebars');
 
 
