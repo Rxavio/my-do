@@ -17,6 +17,14 @@ res.render('home/index',{posts: posts});
 
 });
 
+router.get('/post/:id',(req,res)=>{
+Post.findOne({_id:req.params.id})
+.then(post=>{ 
+res.render('home/post',{post: post}); 
+});
+
+});
+
 router.get('/about',(req,res)=>{
 res.render('home/about'); 
 });
