@@ -57,7 +57,9 @@ const newPost = new Post({
     file: filename
         });
 newPost.save().then(savePost=>{
-//    console.log(savePost);
+
+req.flash('success_message', 'Post was successfully updated');
+
 res.redirect('/admin/posts');
 }).catch(error=>{
 console.log('could not save post');
