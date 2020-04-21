@@ -18,7 +18,6 @@ res.render('admin/categories/index', {categories: categories});
 
 });
 
-
 router.post('/create', (req, res)=>{
 
     const newCategory = new Category({
@@ -28,6 +27,8 @@ router.post('/create', (req, res)=>{
     });
 
     newCategory.save(savedCategory=>{
+
+        req.flash('success_message', 'Category successfully created');
 
         res.redirect('/admin/categories');
 
@@ -53,6 +54,8 @@ router.put('/edit/:id', (req, res)=>{
 
         category.save().then(savedCategory=>{
 
+            req.flash('success_message', 'Category successfully Updated');
+
             res.redirect('/admin/categories');
 
         });
@@ -61,22 +64,16 @@ router.put('/edit/:id', (req, res)=>{
 
 });
 
-
 router.delete('/:id', (req, res)=>{
 
     Category.deleteOne({_id: req.params.id}).then(result=>{
+
+        req.flash('success_message', 'Category successfully Deleted');
  
         res.redirect('/admin/categories');
  
     });
   
  });
-
-
-
-
-
-
-
 
 module.exports = router;
