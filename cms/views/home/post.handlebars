@@ -28,6 +28,9 @@
           <p class="lead">{{post.body}}</p>
 
           <hr>
+           
+    {{#if user}}
+     {{#if post.allowComments}}
 
           <!-- Comments Form -->
             <div class="card my-4">
@@ -43,6 +46,17 @@
                 </form>
             </div>
         </div>
+         {{else}}
+        <h2>Comments not allowed for this</h2>
+            <br>
+            <hr>
+        {{/if}}
+        
+       {{else}}
+        You need to login to comment <a href="/login">Login</a>
+        <br>
+        <hr>
+      {{/if}}
 
 
           <!-- Single Comment -->
