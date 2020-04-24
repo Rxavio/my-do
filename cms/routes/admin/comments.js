@@ -32,9 +32,12 @@ router.post('/', (req, res)=>{
     });
 
 });
-
-
-
+router.delete('/:id', (req, res)=>{
+    Comment.deleteOne({_id: req.params.id}).then(deleteItem=>{
+        req.flash('success_message', 'Comment successfully Deleted');
+        res.redirect('/admin/comments');
+    });
+ });
 
 
 
