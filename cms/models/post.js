@@ -2,7 +2,10 @@ const mongoose=require('mongoose')
 
 const Schema=mongoose.Schema;
 const PostSchema = new Schema({
-
+   user: {
+    type: Schema.Types.ObjectId,
+    ref:'users'
+    },
     category: {
         type: Schema.Types.ObjectId,
         ref: 'categories'
@@ -23,11 +26,9 @@ const PostSchema = new Schema({
         type: String,
         require: true
     },
-
     file:{
         type: String,
     },
-    
      date: {
         type: Date,
         default: Date.now()
