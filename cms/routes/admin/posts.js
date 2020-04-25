@@ -20,6 +20,15 @@ router.get('/',(req,res)=>{
     });
     });
 
+    router.get('/my-posts', (req, res)=>{
+        Post.find({user: req.user.id})
+            .populate('category')
+            .then(posts=>{
+                res.render('admin/posts/my-posts', {posts: posts});
+            });
+       });
+       
+
 router.get('/create',(req,res)=>{
 
     Category.find({}).then(categories=>{
@@ -130,7 +139,7 @@ router.put('/edit/:id', (req, res)=>{
 
           req.flash('success_message', 'Post was successfully updated');
 
-         res.redirect('/admin/posts');
+         res.redirect('/admin/posts/my-posts');
             });
 
         });
@@ -148,7 +157,7 @@ router.delete('/:id', (req, res)=>{
                 }
                 post.remove().then(postRemoved=>{
                     req.flash('success_message', 'Post was successfully deleted');
-                    res.redirect('/admin/posts');
+                    res.redirect('/admin/posts/my-posts');
                 });
             });
      });
