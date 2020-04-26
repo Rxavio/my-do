@@ -12,7 +12,7 @@ const {mongoDbUrl} = require('./config/database');
 const passport = require('passport');
 
 //database connection
- mongoose.connect(mongoDbUrl,{useNewUrlParser:true}).then(db=>{
+ mongoose.connect(mongoDbUrl,{useNewUrlParser:true, useFindAndModify: false}).then(db=>{
      console.log('mongo connected');
 
  }).catch(error=>console.log('error'));
